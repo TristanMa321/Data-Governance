@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="feichangbang">
+    <!--
+      想编写什么sql,就用什么标签
+      <insert>
+      -->
+    <select id="sql1" resultType="com.atguigu.mybatis.beans.Employee">
+        select * from employee where id = #{feafa}
+    </select>
+</mapper>

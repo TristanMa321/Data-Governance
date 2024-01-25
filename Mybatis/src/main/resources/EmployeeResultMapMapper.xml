@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace: 自定义mapper中，要等于接口的全类名
+-->
+<mapper namespace="com.atguigu.mybatis.mapper.EmployeeResultMapMapper">
+    <!--
+      想编写什么sql,就用什么标签
+      <insert>
+      id ： 接口对应的方法名
+      resultType: 自动封装，查询结果的一行封装的类型
+      resultMap: 可以自定义映射规则
+      占位符： 一个参数时，内容随便写
+              多个参数时，写bean的属性值
+      -->
+
+
+    <select id="getAll" resultMap="rule1">
+        select * from employee
+    </select>
+
+    <resultMap id="rule1" type="com.atguigu.mybatis.beans.Emp" autoMapping="true">
+    <!--
+        result: 代表一个字面量的属性映射规则
+         -->
+        <result column="last_name" property="name"/>
+        <!--
+            association: 嵌套Bean的映射规则
+            javaType ： 这个嵌套bean的全类名
+             -->
+        <association property="genderAndEmail" javaType="com.atguigu.mybatis.beans.GenderAndEmail" autoMapping="true">
+            <result column="email" property="emailAddr"/>
+        </association>
+    </resultMap>
+</mapper>

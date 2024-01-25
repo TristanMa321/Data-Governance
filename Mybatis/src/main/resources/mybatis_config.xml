@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--可以配多个数据库环境 default用来选择用那个环境-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://hadoop102:3306/Mybatis?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="000000"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="sqls.xml"/>
+        <mapper resource="EmployeeMapper.xml"/>
+        <mapper class="com.atguigu.mybatis.mapper.EmployeeAnnotationMapper"/>
+        <mapper class="com.atguigu.mybatis.mapper.PassParamentMapper"/>
+        <mapper resource="EmployeeResultMapMapper.xml"/>
+        <mapper class="com.atguigu.mybatis.mapper.ParamStyleMapper"/>
+    </mappers>
+</configuration>
