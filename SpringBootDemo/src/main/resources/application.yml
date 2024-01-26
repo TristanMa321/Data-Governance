@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    name: mydb
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://hadoop102:3306/Mybatis?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: "000000"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath*:/sqls/*Mapper.xml
+  configuration:
+    mapUnderscoreToCamelCase: false
+logging:
+  level:
+    com:
+      atguigu:
+        demo:
+          mapper: debug
