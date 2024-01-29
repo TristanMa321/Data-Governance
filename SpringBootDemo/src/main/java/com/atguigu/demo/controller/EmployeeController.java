@@ -63,4 +63,8 @@ public class EmployeeController {
     public Object handle2(){
         return  service.getAll();
     }
+    @RequestMapping("/getRegion")
+    public Object handle3(){
+        return  service.getRegion();
+    }
 }

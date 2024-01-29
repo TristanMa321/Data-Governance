@@ -37,4 +37,7 @@
         select * from employee
     </select>
 
+    <select id="getRegion" resultType="com.atguigu.demo.bean.Region">
+        select * from region
+    </select>
 </mapper>

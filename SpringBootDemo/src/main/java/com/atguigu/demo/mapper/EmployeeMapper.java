@@ -3,15 +3,17 @@ package com.atguigu.demo.mapper;
 
 
 import com.atguigu.demo.bean.Employee;
+import com.atguigu.demo.bean.Region;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /*
     @Mapper
-        作用： 容器扫描到后，会容器中创建一个单例对象
-              给开发人员看的，标识当前类是一个Dao
-              标注了这个注解，容器会调用Mybatis提供的动态代理技术为你创建对象。
+        作用： 容器扫描到后，会容器中创建一个单例对象，在Service的implement中真正的调用这个方法
+              给开发人员看的，标识当前类是一个Dao，是个数据库访问对象,记住它是跟数据库交互那个
+              写sql逻辑的地方，只不过这个工程里，我们没有在这里直接写，而是映射到了一个sql文件
  */
 
 @Mapper
@@ -30,5 +32,10 @@ public interface EmployeeMapper {
 
     // 查询所有员工
     List<Employee> getAll();
+
+    // 查询Mybatis2库下的Region表
+
+    @DS("Mybatis2")
+    List<Region> getRegion();
 
 }

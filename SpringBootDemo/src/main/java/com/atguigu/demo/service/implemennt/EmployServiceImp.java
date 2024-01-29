@@ -1,6 +1,7 @@
 package com.atguigu.demo.service.implemennt;
 
 import com.atguigu.demo.bean.Employee;
+import com.atguigu.demo.bean.Region;
 import com.atguigu.demo.mapper.EmployeeMapper;
 import com.atguigu.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +58,13 @@ public class EmployServiceImp implements EmployeeService {
         List<Employee> all = mapper.getAll();
         System.out.println("查询所有数据之后");
         return all;
+    }
+
+    @Override
+    public List<Region> getRegion() {
+        System.out.println("查询所有数据之前");
+        List<Region> allregion = mapper.getRegion();
+        System.out.println("查询所有数据之后");
+        return allregion;
     }
 }

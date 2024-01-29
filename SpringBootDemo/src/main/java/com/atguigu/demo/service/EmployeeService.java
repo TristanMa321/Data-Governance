@@ -1,6 +1,7 @@
 package com.atguigu.demo.service;
 
 import com.atguigu.demo.bean.Employee;
+import com.atguigu.demo.bean.Region;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public interface EmployeeService {
     // 查询所有员工
     List<Employee> getAll();
 
-
+    // 查询Mybatis2库下的Region表
+    List<Region> getRegion();
 
 }
