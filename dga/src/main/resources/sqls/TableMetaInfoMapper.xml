@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace: 自定义mapper中，要等于接口的全类名
+-->
+<mapper namespace="com.atguigu.dga.meta.mapper.TableMetaInfoMapper">
+    <!--
+      想编写什么sql,就用什么标签
+      <insert>
+      id ： 接口对应的方法名
+      resultType: 查询结果的一行封装的类型, 自动封装, bean的属性名和列名一致
+      占位符： 一个参数时，内容随便写
+              多个参数时，写bean的属性值
+      动态sql: 你传那个参数，我用哪个参数查
+      -->
+    <!--  查询表信息  -->
+    <select id="queryMetaInfoList" resultType="com.atguigu.dga.meta.bean.PageTableMetaInfo">
+        select
+            id,
+            tableName,
+            schemaName,
+            tableSize,
+            tableTotalSize,
+            tableComment,
+            tecOwnerUserName,
+            busiOwnerUserName,
+            tableLastModifyTime,
+            tableLastAccessTime
+            <include refid="joinSql"/>
+        limit #{start}, #{size}
+    </select>
+
+
+
+    <!--  查询总计
+            mybatis为java常见的基本数据类型，提供了内置的默认名字
+            int =====> java.lang.Integer-->
+    <select id="queryMetaInfoTotal" resultType="int">
+        select
+        count(*)
+        <include refid="joinSql"/>
+    </select>
+
+    <sql id="ifSql">
+        <if test=" db != null and db != '' ">
+            and schema_name = #{db}
+        </if>
+
+        <if test=" tname != null and tname != '' ">
+            and table_name like concat('%',#{tname},'%' )
+        </if>
+    </sql>
+
+
+    <!--  公共sql  -->
+    <sql id="joinSql">
+        from (
+        select id,
+        table_name tableName,
+        schema_name schemaName,
+        table_size tableSize,
+        table_total_size tableTotalSize,
+        table_comment tableComment,
+        table_last_modify_time tableLastModifyTime,
+        table_last_access_time tableLastAccessTime
+        from table_meta_info
+        <where>
+            <include refid="ifSql"/>
+            and assess_date = (select max(assess_date) from table_meta_info)
+        </where>
+        ) t1
+        right join (
+        select table_name,
+        schema_name,
+        tec_owner_user_name tecOwnerUserName,
+        busi_owner_user_name busiOwnerUserName
+        from table_meta_info_extra
+        <where>
+            <include refid="ifSql"/>
+            <if test=" level != null and level != '' ">
+                and dw_level = #{level}
+            </if>
+        </where>
+        ) t2 on t1.tableName=t2.table_name
+        order by id
+    </sql>
+
+
+</mapper>

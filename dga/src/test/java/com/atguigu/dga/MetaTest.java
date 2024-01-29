@@ -1,5 +1,6 @@
 package com.atguigu.dga;
 
+import com.atguigu.dga.meta.service.TableMetaInfoExtraService;
 import com.atguigu.dga.meta.service.TableMetaInfoService;
 import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
 import org.apache.hadoop.hive.metastore.api.MetaException;
@@ -37,6 +38,24 @@ public class MetaTest {
     @Test
     public void testInitMetaInfo() throws TException, IOException {
         metaInfoService.initMetaInfo("gmall","2024-01-27");
+
+    }
+    @Autowired
+    private TableMetaInfoExtraService extraService;
+    @Test
+    public void testExtraInfo() throws TException, IOException {
+        extraService.initMetaInfoExtra("gmall");
+
+    }
+
+    @Test
+    public void testQueryMetaInfoList() throws TException, IOException {
+        System.out.println(metaInfoService.queryMetaInfoList(
+                1, 10, "log", null, ""));
+
+        System.out.println(metaInfoService.queryMetaInfoTotal(
+                null, null, "ODS"));
+
 
     }
 }

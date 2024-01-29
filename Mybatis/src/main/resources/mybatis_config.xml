@@ -22,5 +22,6 @@
         <mapper class="com.atguigu.mybatis.mapper.PassParamentMapper"/>
         <mapper resource="EmployeeResultMapMapper.xml"/>
         <mapper class="com.atguigu.mybatis.mapper.ParamStyleMapper"/>
+        <mapper resource="DynamicSqlMapper.xml"/>
     </mappers>
 </configuration>

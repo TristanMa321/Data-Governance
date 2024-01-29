@@ -1,6 +1,7 @@
 package com.atguigu.dga.meta.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.atguigu.dga.meta.bean.PageTableMetaInfo;
 import com.atguigu.dga.meta.bean.TableMetaInfo;
 import com.atguigu.dga.meta.mapper.TableMetaInfoMapper;
 import com.atguigu.dga.meta.service.TableMetaInfoService;
@@ -59,6 +60,16 @@ public class TableMetaInfoServiceImpl extends ServiceImpl<TableMetaInfoMapper, T
         List<TableMetaInfo> metaInfos = extractMetaInfoFromHDFS(tableMetaInfos);
         //4. 写入目标表
         saveBatch(metaInfos);
+    }
+
+    @Override
+    public List<PageTableMetaInfo> queryMetaInfoList(int start, Integer pageSize, String tableName, String schemaName, String dwLevel) {
+        return baseMapper.queryMetaInfoList(start, pageSize, tableName, schemaName, dwLevel);
+    }
+
+    @Override
+    public Integer queryMetaInfoTotal(String tableName, String schemaName, String dwLevel) {
+        return baseMapper.queryMetaInfoTotal(tableName, schemaName, dwLevel);
     }
 
     private List<TableMetaInfo> extractMetaInfoFromHDFS(List<TableMetaInfo> tableMetaInfos) throws IOException {

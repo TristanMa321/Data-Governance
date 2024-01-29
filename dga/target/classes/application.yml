@@ -28,6 +28,7 @@ logging:
     com:
       atguigu:
         dga:
-          mapper: debug
+          meta:
+            mapper: debug
 server:
   port: 80

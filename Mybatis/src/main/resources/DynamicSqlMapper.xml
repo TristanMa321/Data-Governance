@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace: 自定义mapper中，要等于接口的全类名
+-->
+<mapper namespace="com.atguigu.mybatis.mapper.DynamicSqlMapper">
+    <!--
+      想编写什么sql,就用什么标签
+      <insert>
+      id ： 接口对应的方法名
+      resultType: 查询结果的一行封装的类型
+      占位符： 一个参数时，内容随便写
+              多个参数时，写bean的属性值
+      <where>: 添加一个where关键字，去除多余的and
+      -->
+    <select id="queryByCondition" resultType="com.atguigu.mybatis.beans.Employee">
+        select * from employee
+        <where>
+            <if test=" name != null and name != '' ">
+                and last_name = #{name}
+            </if>
+
+            <if test=" id != null and id != '' ">
+                and id = #{id}
+            </if>
+
+            <if test=" gender != null and gender != '' ">
+                and gender = #{gender}
+            </if>
+        </where>
+    </select>
+
+</mapper>
