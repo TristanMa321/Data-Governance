@@ -2,6 +2,12 @@
 
 public interface MetaConstant
 {
+    // 准备检测表名的正则表达式
+    String ODS_REGEX = "^ods_\\w+_(inc|full)$";
+    String DIM_REGEX = "^dim_\\w+_(zip|full)$";
+    String DWD_REGEX = "^dwd_(trade|user|tool|traffic|interaction)_\\w+_(inc|full|acc)$";
+    String DWS_REGEX = "^dws_(trade|user|tool|traffic|interaction)_\\w+_(\\d+d|nd|td)$";
+    String ADS_REGEX = "^ads_\\w+$";
     String SCHEMA_NAME="";
     //存储周期
     String LIFECYCLE_TYPE_PERM="PERM";  //永久
@@ -28,4 +34,5 @@ public interface MetaConstant
     //DS状态码
     Integer TASK_STATE_SUCCESS = 7;
     Integer TASK_STATE_FAILED = 6;
+
 }

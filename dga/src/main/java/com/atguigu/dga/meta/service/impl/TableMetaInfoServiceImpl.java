@@ -49,6 +49,7 @@ import java.util.stream.Collectors;
 @Service
 public class TableMetaInfoServiceImpl extends ServiceImpl<TableMetaInfoMapper, TableMetaInfo> implements TableMetaInfoService {
 
+
     @Override
     public void initMetaInfo(String db, String assessDate) throws MetaException, IOException {
         //1. 保证原数据信息不回重复采集：先删除之前的
@@ -70,6 +71,11 @@ public class TableMetaInfoServiceImpl extends ServiceImpl<TableMetaInfoMapper, T
     @Override
     public Integer queryMetaInfoTotal(String tableName, String schemaName, String dwLevel) {
         return baseMapper.queryMetaInfoTotal(tableName, schemaName, dwLevel);
+    }
+
+    @Override
+    public List<TableMetaInfo> queryMetaInfo(String db, String assessDate) {
+        return baseMapper.queryMetaInfo(db, assessDate);
     }
 
     private List<TableMetaInfo> extractMetaInfoFromHDFS(List<TableMetaInfo> tableMetaInfos) throws IOException {

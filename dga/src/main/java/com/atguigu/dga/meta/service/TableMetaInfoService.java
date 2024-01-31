@@ -24,4 +24,6 @@ public interface TableMetaInfoService extends IService<TableMetaInfo> {
 
     Integer queryMetaInfoTotal(String tableName, String schemaName, String dwLevel);
 
+    //查询要考评的原数据信息
+    List<TableMetaInfo> queryMetaInfo(String db, String assessDate);
 }

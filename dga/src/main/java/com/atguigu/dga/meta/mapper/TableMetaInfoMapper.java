@@ -42,5 +42,6 @@ public interface TableMetaInfoMapper extends BaseMapper<TableMetaInfo> {
     Integer queryMetaInfoTotal(@Param("tname") String tableName,
                                @Param("db") String schemaName,
                                @Param("level") String dwLevel);
-
+    // 查询要考评的当天原数据信息
+    List<TableMetaInfo> queryMetaInfo(@Param("db") String db, @Param("dt") String assessDate);
 }
