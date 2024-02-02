@@ -50,7 +50,7 @@ public class GovernanceAssessDetail implements Serializable {
     /**
      * 指标项id
      */
-    private String metricId;
+    private Long metricId;
 
     /**
      * 指标项名称

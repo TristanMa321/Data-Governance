@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @date 2024-01-30
+ * 这个是metaInfo各个表每个字段的信息！！！，对应表中col_name_json列
  */
 @Data
 @NoArgsConstructor

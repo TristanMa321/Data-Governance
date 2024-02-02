@@ -28,7 +28,7 @@ public  abstract class AssessorTemplate {
         detail.setAssessDate(metaInfo.getAssessDate());
         detail.setTableName(metaInfo.getTableName());
         detail.setSchemaName(metaInfo.getSchemaName());
-        detail.setMetricId(metric.getMetricCode());
+        detail.setMetricId(metric.getId());
         detail.setMetricName(metric.getMetricName());
         detail.setGovernanceType(metric.getGovernanceType());
         detail.setTecOwner(extraMetaInfo.getTecOwnerUserName());
@@ -71,8 +71,10 @@ public  abstract class AssessorTemplate {
         }
     }
 
-    // 提取metric表的metric_params_json列
+    // 提取metric表的metric_params_json列, 里面包含所有的阈值参数
     protected Integer getIntegerValue(GovernanceMetric metric, String paramName){
         return (Integer) JSON.parseObject(metric.getMetricParamsJson()).get(paramName);
     }
+
+
 }

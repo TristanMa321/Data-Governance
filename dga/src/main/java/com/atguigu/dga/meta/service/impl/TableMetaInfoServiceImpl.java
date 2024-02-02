@@ -143,6 +143,17 @@ public class TableMetaInfoServiceImpl extends ServiceImpl<TableMetaInfoMapper, T
                     try {
                         // 根据表名查询原数据
                         Table table = client.getTable(db, name);
+                        /*
+                            StorageDescriptor: 存储描述符，包含有关如何存储表数据的信息
+                            主要包括
+                                1 数据存储的位置
+                                2 数据的输入(InputFormat)和输出格式(OutputFormat)
+                                3 表的序列化和反序列化机制 SerdeInfo
+                                4 所有列的原数据信息(Cols)
+                                5 分桶数(NumBuckets)
+                                6 表中的排序列以及它们的排序顺序(SortCols)
+                                7 定义为桶的列名的List(BucketCols)
+                         */
                         StorageDescriptor sd = table.getSd();
                         // 设置原数据信息
                         tableMetaInfo.setTableName(table.getTableName());

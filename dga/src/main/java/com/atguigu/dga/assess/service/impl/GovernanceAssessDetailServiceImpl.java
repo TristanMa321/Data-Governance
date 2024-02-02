@@ -7,6 +7,7 @@ import com.atguigu.dga.assess.bean.GovernanceMetric;
 import com.atguigu.dga.assess.mapper.GovernanceAssessDetailMapper;
 import com.atguigu.dga.assess.service.GovernanceAssessDetailService;
 import com.atguigu.dga.assess.service.GovernanceMetricService;
+import com.atguigu.dga.config.CacheUtil;
 import com.atguigu.dga.meta.bean.TableMetaInfo;
 import com.atguigu.dga.meta.service.TableMetaInfoService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -37,6 +38,8 @@ public class GovernanceAssessDetailServiceImpl extends ServiceImpl<GovernanceAss
         remove(new QueryWrapper<GovernanceAssessDetail>().eq("schema_name",db).eq("assess_date",assessDate));
         // 抽取要考评的数据（原数据表+辅助信息表）
         List<TableMetaInfo> metaInfo =queryMetaInfo(db,assessDate);
+        // 将上述查到的元数据，封装到一个map集合中方便后续某些指标，根据表名获取相关表的原数据信息
+        saveMetaInfoToMap(metaInfo);
         // 查询考评指标
         List<GovernanceMetric> metrics = metricService.list(new QueryWrapper<GovernanceMetric>().eq("is_disabled", "否"));
         // 考评
@@ -44,6 +47,13 @@ public class GovernanceAssessDetailServiceImpl extends ServiceImpl<GovernanceAss
         // 结果写入数据库
         saveBatch(details);
     }
+
+    private void saveMetaInfoToMap(List<TableMetaInfo> metaInfo) {
+        for (TableMetaInfo tableMetaInfo : metaInfo){
+            CacheUtil.metaInfoMap.put(CacheUtil.getKey(tableMetaInfo), tableMetaInfo);
+        }
+    }
+
     @Autowired
     ApplicationContext context;
     /*
