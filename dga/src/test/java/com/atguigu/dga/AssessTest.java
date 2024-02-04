@@ -32,7 +32,7 @@ public class AssessTest {
     private GovernanceAssessDetailService detailService;
     @Test
     public void testAssess(){
-        detailService.generateAssessDetail("gmall","2024-01-29");
+        detailService.generateAssessDetail("gmall","2023-05-26");
     }
 
     @Test

@@ -21,7 +21,7 @@ public class MyGenerator
     public static void main(String[] args) {
 
         //指定为哪些表生成
-        String[] tables={ "governance_metric" };
+        String[] tables={ "governance_type","governance_assess_global","governance_assess_table","governance_assess_tec_owner"};
 
         FastAutoGenerator.create("jdbc:mysql://hadoop102:3306/dga","root","000000")
                          .globalConfig(builder -> {
@@ -32,7 +32,7 @@ public class MyGenerator
                          })
                          .packageConfig(builder -> {                 //各个package 名称
                              builder.parent("com.atguigu.dga")
-                                    .moduleName("assess")
+                                    .moduleName("score")
                                     .entity("bean")
                                     .service("service")
                                     .serviceImpl("service.impl")

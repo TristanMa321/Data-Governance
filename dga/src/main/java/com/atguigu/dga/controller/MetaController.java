@@ -50,6 +50,11 @@ public class MetaController {
         // 补充一个修改时间
         extra.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         // 写入数据库
+        /*
+            saveOrUpdate 方法的主要作用是检查给定的实体或数据记录是否存在于数据库中：
+                如果存在，则更新该记录。
+                如果不存在，则保存（插入）新的记录
+         */
         metaInfoExtraService.saveOrUpdate(extra);
         return "success";
     }
