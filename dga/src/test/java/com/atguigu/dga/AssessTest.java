@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @date 2024-01-30
@@ -31,7 +32,7 @@ public class AssessTest {
     @Autowired
     private GovernanceAssessDetailService detailService;
     @Test
-    public void testAssess(){
+    public void testAssess() throws ExecutionException, InterruptedException {
         detailService.generateAssessDetail("gmall","2023-05-26");
     }
 

@@ -21,11 +21,11 @@ import java.util.List;
 public interface GovernanceAssessGlobalMapper extends BaseMapper<GovernanceAssessGlobal> {
     @Select(" select null as id," +
             "       #{dt} as assess_date," +
-            "       avg(score_spec_avg) score_spec," +
-            "       avg(score_storage_avg) score_storage," +
-            "       avg(score_calc_avg) score_calc," +
-            "       avg(score_quality_avg) score_quality," +
-            "       avg(score_security_avg) score_security," +
+            "       avg(score_spec_avg) * 10 score_spec," +
+            "       avg(score_storage_avg) * 10 score_storage," +
+            "       avg(score_calc_avg) * 10 score_calc," +
+            "       avg(score_quality_avg) * 10 score_quality," +
+            "       avg(score_security_avg) * 10 score_security," +
             "       avg(score_on_type_weight) score," +
             "       count(if(problem_num>0, id, null))table_num," +
             "       sum(problem_num) as problem_num," +
